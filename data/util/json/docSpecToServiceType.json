@@ -1,0 +1,530 @@
+{
+    "stomatolog": {
+      "parentType": "Stomatološka skrb",
+      "services": [
+        "Stomatološki pregled",
+        "Čišćenje i poliranje zuba",
+        "Liječenje karijesa i bolesti desni",
+        "Ortodoncija, oralna kirurgija i protetika"
+      ]
+    },
+    "obiteljska medicina": {
+      "parentType": "Opća medicinska skrb",
+      "services": [
+        "Preventivni pregled",
+        "Upravljanje kroničnim bolestima",
+        "Cijepljenje",
+        "Savjetovanje o zdravom načinu života"
+      ]
+    },
+    "ginekolog": {
+      "parentType": "Žensko zdravlje",
+      "services": [
+        "Ginekološki pregled",
+        "Praćenje trudnoće",
+        "Kirurški zahvati u ginekologiji",
+        "Parodontološki pregled"
+      ]
+    },
+    "psihijatar": {
+      "parentType": "Psihološka i psihijatrijska skrb",
+      "services": [
+        "Psihijatrijska dijagnoza i liječenje",
+        "Psihoterapijske sesije",
+        "Savjetovanje o mentalnom zdravlju"
+      ]
+    },
+    "pedijatar": {
+      "parentType": "Pedijatrijska skrb",
+      "services": [
+        "Pregled dojenčadi, djece i adolescenata",
+        "Cijepljenje",
+        "Kirurški zahvati na djeci",
+        "Neurološki pregled djece"
+      ]
+    },
+    "internist": {
+      "parentType": "Internistička skrb",
+      "services": [
+        "Dijagnostika i liječenje internističkih bolesti",
+        "Endoskopija (gastroenterologija)",
+        "Kardiološki pregled i testovi",
+        "Pulmološki pregled i testovi",
+        "Reumatološki pregled",
+        "Hematološki pregled",
+        "Nefrološki pregled",
+        "Endokrinološki pregled"
+      ]
+    },
+    "oftalmolog": {
+      "parentType": "Oftalmološka skrb",
+      "services": [
+        "Oftalmološki pregled",
+        "Operacije oka",
+        "Liječenje očnih bolesti"
+      ]
+    },
+    "fizijatar": {
+      "parentType": "Fizikalna medicina i rehabilitacija",
+      "services": [
+        "Fizikalna terapija",
+        "Rehabilitacija nakon ozljeda ili operacija"
+      ]
+    },
+    "radiolog": {
+      "parentType": "Radiološka dijagnostika",
+      "services": [
+        "Radiološki pregled",
+        "Tumačenje snimki",
+        "CT i MRI skeniranje"
+      ]
+    },
+    "ortoped": {
+      "parentType": "Kirurška skrb",
+      "services": [
+        "Dijagnostika i liječenje ozljeda i bolesti kostiju",
+        "Artroskopija",
+        "Zamjena zglobova",
+        "Liječenje sportskih ozljeda",
+        "Korektivna kirurgija kralježnice",
+        "Pedijatrijska ortopedija",
+        "Traumatologija"
+      ]
+    },
+    "dermatovenerolog": {
+      "parentType": "Kirurška skrb",
+      "services": [
+        "Dermatološki pregled",
+        "Dijagnostika i liječenje kožnih bolesti",
+        "Pregled madeža i pigmentacija",
+        "Dermatoskopija",
+        "Liječenje akni i drugih dermatoloških problema",
+        "Dijagnostika i liječenje spolno prenosivih bolesti",
+        "Krioterapija (uklanjanje bradavica, keratoza)",
+        "Laseroterapija",
+        "Dermatohirurgija (kirurško uklanjanje tumora i lezija)"
+      ]
+    },
+    "neurolog": {
+      "parentType": "Internistička skrb",
+      "services": [
+        "Neurološki pregled",
+        "Elektroencefalografija (EEG)",
+        "Magnetoencefalografija (MEG)",
+        "Magnetna rezonanca mozga (MRI)",
+        "Kompjutorska tomografija mozga (CT)",
+        "Lumbalna punkcija (spinalna punkcija)",
+        "Elektromiografija (EMG) i testovi nervnog kondukcije",
+        "PET (pozitronska emisijska tomografija) i SPECT (jednofotonska emisijska tomografija)"
+      ]
+    },
+    "anesteziolog": {
+      "parentType": "Hitna medicinska skrb",
+      "services": [
+        "Hitna medicinska skrb",
+        "Dijagnostika hitnih stanja",
+        "Stabilizacija prije premještaja"
+      ]
+    },
+    "kardiolog": {
+      "parentType": "Internistička skrb",
+      "services": [
+        "EKG (elektrokardiogram)",
+        "Holter monitoring (24-satno praćenje EKG-a)",
+        "Ehokardiografija",
+        "Treadmill test (test opterećenja)",
+        "Koronarna angiografija",
+        "Stentiranje koronarnih arterija",
+        "Pacemaker implantacija",
+        "Defibrilator implantacija",
+        "Terapija lijekovima za srčane bolesti",
+        "Vođenje pacijenata s srčanim bolestima",
+        "Prevencija kardiovaskularnih bolesti"
+      ]
+    },
+    "otorinolaringolog": {
+      "parentType": "Otorinolaringološka skrb",
+      "services": [
+        "ORL pregled i kirurški zahvati",
+        "Audiološki pregled i testiranje sluha"
+      ]
+    },
+    "pulmolog": {
+      "parentType": "Internistička skrb",
+      "services": [
+        "Dijagnostika i liječenje internističkih bolesti",
+        "Endoskopija (gastroenterologija)",
+        "Kardiološki pregled i testovi",
+        "Pulmološki pregled i testovi",
+        "Reumatološki pregled",
+        "Hematološki pregled",
+        "Nefrološki pregled",
+        "Endokrinološki pregled"
+      ]
+    },
+    "opći kirurg": {
+      "parentType": "Kirurška skrb",
+      "services": [
+        "Pulmološki pregled",
+        "Spirometrija",
+        "Bronhoskopija",
+        "Rendgensko snimanje pluća",
+        "CT skeniranje pluća",
+        "Polisomnografija (ispitivanje spavanja)",
+        "Liječenje astme",
+        "Liječenje kronične opstruktivne plućne bolesti (KOPB)",
+        "Dijagnostika i liječenje intersticijalnih bolesti pluća",
+        "Liječenje pneumonija",
+        "Liječenje plućnih embolija",
+        "Oksigenoterapija",
+        "Rehabilitacija pluća",
+        "Savjetovanje o prestanku pušenja"
+      ]
+    },
+    "kirurg": {
+      "parentType": "Kirurška skrb",
+      "services": [
+        "Kirurški pregled",
+        "Opća kirurgija",
+        "Laparoskopska kirurgija",
+        "Endoskopski pregledi",
+        "Plastična i rekonstruktivna kirurgija",
+        "Ortopedska kirurgija",
+        "Vaskularna kirurgija",
+        "Torakalna kirurgija",
+        "Abdominalna kirurgija",
+        "Operacije probavnog sustava",
+        "Operacije krvnih žila",
+        "Operacije dojke",
+        "Operacije štitnjače",
+        "Operacije debelog crijeva",
+        "Hitna kirurgija"
+      ]
+    },
+    "spec. oralne kirurgije": {
+      "parentType": "Kirurška skrb",
+      "services": [
+        "Oralno-kirurški pregled",
+        "Vađenje zuba",
+        "Kirurško vađenje umnjaka",
+        "Oralna implantologija",
+        "Kirurško liječenje bolesti usne šupljine",
+        "Korektivna čeljustna kirurgija",
+        "Rekonstruktivna oralna kirurgija",
+        "Kirurško postavljanje proteza",
+        "Biopsija oralnih lezija",
+        "Liječenje traumatskih ozljeda čeljusti",
+        "Plastična i rekonstruktivna kirurgija lica",
+        "Estetska oralna kirurgija"
+      ]
+    },
+    "specijalist medicine rada i sporta": {
+      "parentType": "Medicina rada i sporta",
+      "services": [
+        "Medicinski pregled za sportaše",
+        "Ocena sportske sposobnosti",
+        "Procjena radne sposobnosti",
+        "Planiranje i praćenje treninga",
+        "Dijagnostika sportskih povreda",
+        "Prevencija sportskih povreda",
+        "Liječenje sportskih povreda"
+      ]
+    },
+    "gastroenterolog": {
+      "parentType": "Internistička skrb",
+      "services": [
+        "Dijagnostika i liječenje probavnih bolesti",
+        "Endoskopija"
+      ]
+    },
+    "urolog": {
+      "parentType": "Kirurška skrb",
+      "services": [
+        "Urološki pregled",
+        "Kirurški zahvati na urogenitalnom sustavu"
+      ]
+    },
+    "spec. ortodoncije": {
+      "parentType": "Stomatološka skrb",
+      "services": [
+        "Ortodontski pregled",
+        "Postavljanje ortodontskih aparatića"
+      ]
+    },
+    "plastični kirurg": {
+      "parentType": "Kirurška skrb",
+      "services": [
+        "Plastično-rekonstruktivni kirurški zahvati"
+      ]
+    },
+    "spec. nuklearne medicine": {
+      "parentType": "Nuklearna medicina",
+      "services": [
+        "PET/CT snimanje"
+      ]
+    },
+    "onkolog": {
+      "parentType": "Onkološka skrb",
+      "services": [
+        "Onkološki pregled",
+        "Planiranje i primjena terapije zračenjem",
+        "Kemoterapija i imunoterapija"
+      ]
+    },
+    "neurokirurg": {
+      "parentType": "Kirurška skrb",
+      "services": [
+        "Neurokirurški zahvati"
+      ]
+    },
+    "endokrinolog": {
+      "parentType": "Internistička skrb",
+      "services": [
+        "Dijagnostika i liječenje endokrinih poremećaja"
+      ]
+    },
+    "hematolog": {
+      "parentType": "Internistička skrb",
+      "services": [
+        "Dijagnostika i liječenje hematoloških bolesti"
+      ]
+    },
+    "nefrolog": {
+      "parentType": "Internistička skrb",
+      "services": [
+        "Dijagnostika i liječenje bolesti bubrega"
+      ]
+    },
+    "spec. stomatološke protetike": {
+      "parentType": "Stomatološka skrb",
+      "services": [
+        "Protetski radovi na zubima"
+      ]
+    },
+    "mikrobiolog": {
+      "parentType": "Laboratorijske usluge",
+      "services": [
+        "Mikrobiološki pregled"
+      ]
+    },
+    "onkolog i radioterapist": {
+      "parentType": "Onkološka skrb",
+      "services": [
+        "Onkološki pregled",
+        "Planiranje i primjena terapije zračenjem",
+        "Kemoterapija i imunoterapija"
+      ]
+    },
+    "citolog": {
+      "parentType": "Laboratorijske usluge",
+      "services": [
+        "Citološki pregled"
+      ]
+    },
+    "reumatolog": {
+      "parentType": "Internistička skrb",
+      "services": [
+        "Reumatološki pregled"
+      ]
+    },
+    "abdominalni kirurg": {
+      "parentType": "Kirurška skrb",
+      "services": [
+        "Abdominalni kirurški zahvati"
+      ]
+    },
+    "patolog": {
+      "parentType": "Laboratorijske usluge",
+      "services": [
+        "Patološki pregled"
+      ]
+    },
+    "spec. parodontologije": {
+      "parentType": "Stomatološka skrb",
+      "services": [
+        "Parodontološki pregled"
+      ]
+    },
+    "dječji kirurg": {
+      "parentType": "Kirurška skrb",
+      "services": [
+        "Kirurški zahvati na djeci"
+      ]
+    },
+    "vaskularni kirurg": {
+      "parentType": "Kirurška skrb",
+      "services": [
+        "Vaskularni kirurški zahvati"
+      ]
+    },
+    "infektolog": {
+      "parentType": "Infektološka skrb",
+      "services": [
+        "Dijagnostika i liječenje infekcija"
+      ]
+    },
+    "specijalist hitne medicine": {
+      "parentType": "Hitna medicinska skrb",
+      "services": [
+        "Hitna medicinska skrb"
+      ]
+    },
+    "kardiokirurg": {
+      "parentType": "Kirurška skrb",
+      "services": [
+        "Kardiokirurški zahvati"
+      ]
+    },
+    "intezivist": {
+      "parentType": "Hitna medicinska skrb",
+      "services": [
+        "Intenzivna medicinska skrb"
+      ]
+    },
+    "maksilofacijalni kirurg": {
+      "parentType": "Kirurška skrb",
+      "services": [
+        "Maksilofacijalni kirurški zahvati"
+      ]
+    },
+    "torakalni kirurg": {
+      "parentType": "Kirurška skrb",
+      "services": [
+        "Torakalni kirurški zahvati"
+      ]
+    },
+    "traumatolog": {
+      "parentType": "Kirurška skrb",
+      "services": [
+        "Traumatološki pregled i zahvati"
+      ]
+    },
+    "neuropsihijatar": {
+      "parentType": "Psihološka i psihijatrijska skrb",
+      "services": [
+        "Psihijatrijska dijagnoza i liječenje",
+        "Psihoterapijske sesije",
+        "Savjetovanje o mentalnom zdravlju"
+      ]
+    },
+    "farmakolog": {
+      "parentType": "Klinička farmakologija",
+      "services": [
+        "Praćenje učinka lijekova",
+        "Savjetovanje o lijekovima"
+      ]
+    },
+    "psihoterapeut": {
+      "parentType": "Psihološka i psihijatrijska skrb",
+      "services": [
+        "Psihoterapijske sesije"
+      ]
+    },
+    "školska medicina": {
+      "parentType": "Opća medicinska skrb",
+      "services": [
+        "Školski medicinski pregled",
+        "Savjetovanje o zdravom načinu života"
+      ]
+    },
+    "epidemiolog": {
+      "parentType": "Opća medicinska skrb",
+      "services": [
+        "Praćenje i kontrola zaraznih bolesti"
+      ]
+    },
+    "neuropedijatar": {
+      "parentType": "Pedijatrijska skrb",
+      "services": [
+        "Neurološki pregled djece"
+      ]
+    },
+    "pneumoftiziolog": {
+      "parentType": "Internistička skrb",
+      "services": [
+        "Dijagnostika i liječenje plućnih bolesti"
+      ]
+    },
+    "alergolog": {
+      "parentType": "Internistička skrb",
+      "services": [
+        "Dijagnostika i liječenje alergijskih bolesti"
+      ]
+    },
+    "transfuziolog": {
+      "parentType": "Laboratorijske usluge",
+      "services": [
+        "Transfuziološki pregled"
+      ]
+    },
+    "imunolog": {
+      "parentType": "Laboratorijske usluge",
+      "services": [
+        "Imunološki pregled"
+      ]
+    },
+    "proktolog2": {
+      "parentType": "Kirurška skrb",
+      "services": [
+        "Proktološki pregled"
+      ]
+    },
+    "audiolog2": {
+      "parentType": "Specijalizirane poliklinike",
+      "services": [
+        "Audiološki pregled i testiranje sluha"
+      ]
+    },
+    "oralni patolog2": {
+      "parentType": "Laboratorijske usluge",
+      "services": [
+        "Oralni patološki pregled"
+      ]
+    },
+    "imunolog2": {
+      "parentType": "Internistička skrb",
+      "services": [
+        "Dijagnostika i liječenje imunoloških poremećaja"
+      ]
+    },
+    "proktolog": {
+      "parentType": "Kirurška skrb",
+      "services": [
+        "Pregled i liječenje bolesti crijeva i anusa"
+      ]
+    },
+    "audiolog": {
+      "parentType": "Otorinolaringološka skrb",
+      "services": [
+        "Audiološki pregled i testiranje sluha"
+      ]
+    },
+    "oralni patolog": {
+      "parentType": "Kirurška skrb",
+      "services": [
+        "Dijagnostika i liječenje bolesti usne šupljine"
+      ]
+    },
+    "spec. endodoncije i restaurativne stomatologije": {
+      "parentType": "Stomatološka skrb",
+      "services": [
+        "Endodoncija",
+        "Restaurativna stomatologija"
+      ]
+    },
+    "embriolog": {
+      "parentType": "Reproduktivna medicina",
+      "services": [
+        "Praćenje reproduktivnih postupaka",
+        "Genetska dijagnostika i savjetovanje"
+      ]
+    },
+    "urgentna medicina": {
+      "parentType": "Hitna medicinska skrb",
+      "services": [
+        "Hitna medicinska skrb",
+        "Dijagnostika hitnih stanja",
+        "Stabilizacija prije premještaja"
+      ]
+    }
+  }

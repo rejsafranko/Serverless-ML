@@ -3,12 +3,6 @@ models/*
 
 data/processed/*
 !data/processed/.gitkeep
-data/util/csv/*
-!data/util/csv/.gitkeep
-data/util/json/*
-!data/util/json/.gitkeep
-data/util/txt/*
-!data/util/txt/.gitkeep
 
 ml_cpu.pem
 
