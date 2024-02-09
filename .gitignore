@@ -1,3 +1,17 @@
 models/*
+!models/.gitkeep
+
+data/processed/*
+!data/processed/.gitkeep
+data/utils/csv/*
+!data/utils/csv/.gitkeep
+data/utils/json/*
+!data/utils/json/.gitkeep
+data/utils/txt/*
+!data/utils/txt/.gitkeep
+
 ml_cpu.pem
+
 access_token.txt
+
+logo.jpg
