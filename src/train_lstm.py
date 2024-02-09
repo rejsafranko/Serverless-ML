@@ -27,6 +27,20 @@ def parse_args():
 
 
 def remove_missing_data(df: pd.DataFrame):
+    """
+    Removes missing data and empty strings from a DataFrame.
+
+    Parameters:
+    - df (pd.DataFrame): DataFrame containing sentences.
+
+    Returns:
+    - pd.DataFrame: DataFrame with missing data and empty strings removed.
+
+    Note:
+    - This function drops rows with missing values and sentences that are empty strings from the input DataFrame.
+    - After removing the rows, it resets the index of the DataFrame.
+    """
+
     df = df.dropna()
     df = df[df["sentence"] != ""]
     df = df.reset_index(drop=True)
@@ -34,6 +48,21 @@ def remove_missing_data(df: pd.DataFrame):
 
 
 def remove_stopwords(sentence: str):
+    """
+    Removes stopwords from a given sentence.
+
+    Parameters:
+    - sentence (str): The input sentence.
+
+    Returns:
+    - str: The input sentence with stopwords removed.
+
+    Note:
+    - This function utilizes the NLTK library to tokenize the input sentence into words and then
+      removes stopwords from it using the English stopwords list provided by NLTK.
+    - It returns the input sentence with stopwords removed.
+    """
+
     stop_words = set(stopwords.words("english"))
     word_tokens = word_tokenize(sentence)
     filtered_sentence = [word for word in word_tokens if word.lower() not in stop_words]
@@ -41,10 +70,27 @@ def remove_stopwords(sentence: str):
 
 
 def clean_sentence(sentence: str):
+    """
+    Extracts the last word from each sentence in a DataFrame and creates a new column.
+
+    Parameters:
+    - df (pd.DataFrame): DataFrame containing the sentences.
+
+    Returns:
+    - df (pd.DataFrame): DataFrame with an additional column containing the last word of each sentence.
+
+    Note:
+    - This function adds a new column named "last_word" to the input DataFrame, which contains
+      the last word of each sentence.
+    - It also removes the last word from each sentence and updates the "sentence" column accordingly.
+    """
+
     # Remove non-alphabetical characters and leave single whitespaces.
     cleaned_sentence = re.sub(r"[^a-zA-Z\s]", "", sentence)
+
     # Replace multiple whitespaces with a single whitespace.
     cleaned_sentence = re.sub(r"\s+", " ", cleaned_sentence)
+
     return (
         cleaned_sentence.lower().strip()
     )  # Strip leading and trailing whitespaces and lowercase.
@@ -59,6 +105,32 @@ def extract_last_word(df: pd.DataFrame):
 
 
 def preprocess_data(data_path: str):
+    """
+    Preprocesses textual data for sequence modeling tasks.
+
+    Parameters:
+    - data_path (str): The path to the data file.
+
+    Returns:
+    - dataset (dict): A dictionary containing preprocessed data and related information.
+      It has the following keys:
+      - "features" (numpy.ndarray): Input features, padded sequences of tokenized sentences.
+      - "labels" (numpy.ndarray): Output labels, representing the last word in each sentence.
+    - vocab_size (int): The size of the vocabulary after tokenization.
+    - max_len (int): The maximum length of padded sequences.
+
+    Note:
+    - This function reads text data from the specified file path, removes links, tokenizes
+      the text into sentences, removes stopwords, and cleans sentences by removing non-alphabetic
+      characters, extra whitespaces, and converting text to lowercase.
+    - It tokenizes the cleaned sentences, pads the sequences to a uniform length, and extracts
+      the last word from each sentence as the label.
+    - The function utilizes the Tokenizer class from the Keras preprocessing module for tokenization.
+    - If a token in the label sequence is not found in the vocabulary, it is replaced with the out-of-vocabulary
+      token "<UNK>".
+    - The preprocessed data is returned along with the vocabulary size and the maximum sequence length.
+    """
+
     with open(data_path, "r", encoding="utf-8") as file:
         text = file.read()
 
@@ -119,6 +191,23 @@ def preprocess_data(data_path: str):
 
 
 def build_model(vocab_size: int, max_len: int, embedding_dim=50):
+    """
+    Builds a sequential neural network model for natural language processing tasks.
+
+    Parameters:
+    - vocab_size (int): The size of the vocabulary, i.e., the number of unique words in the corpus.
+    - max_len (int): The maximum length of input sequences.
+    - embedding_dim (int, optional): The dimensionality of the embedding space. Defaults to 50.
+
+    Returns:
+    - model: A compiled Keras sequential model for NLP tasks.
+
+    Note:
+    - This function constructs a neural network with an embedding layer, bidirectional LSTM layer,
+      and a dense softmax output layer. It uses sparse categorical crossentropy as the loss function,
+      Adam optimizer, and accuracy as the evaluation metric.
+    """
+
     model = Sequential()
     model.add(
         Embedding(input_dim=vocab_size, output_dim=embedding_dim, input_length=max_len)
