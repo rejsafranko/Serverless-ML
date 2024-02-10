@@ -3,7 +3,3 @@ models/*
 
 data/processed/*
 !data/processed/.gitkeep
-
-ml_cpu.pem
-
-access_token.txt
