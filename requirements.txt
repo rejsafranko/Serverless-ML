@@ -1,0 +1,10 @@
+numpy
+pandas
+matplotlib
+scikit-learn
+tensorflow
+transformers
+datasets
+xgboost
+mlflow
+nltk
