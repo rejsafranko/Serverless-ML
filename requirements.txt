@@ -2,9 +2,9 @@ numpy
 pandas
 matplotlib
 scikit-learn
-tensorflow-cpu --no-cache-dir
+tensorflow-cpu
 transformers
 datasets
-xgboost --no-cache-dir
+xgboost
 mlflow
 nltk
