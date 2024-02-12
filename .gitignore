@@ -1,5 +1,5 @@
-models/*
-!models/.gitkeep
+modeling/models/*
+!modeling/models/.gitkeep
 
-data/processed/*
-!data/processed/.gitkeep
+modeling/data/processed/*
+!modeling/data/processed/.gitkeep
