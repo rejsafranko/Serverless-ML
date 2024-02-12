@@ -1,7 +1,7 @@
 import numpy as np
 import joblib
 from flask import Flask, request, jsonify
-from sklearn.ensemble import RandomForestClassifier
+from sklearn.linear_model import LogisticRegression
 
 LABEL_MAPPING = {
     0: "Clinical pharmacology",
@@ -30,7 +30,7 @@ ALPHABET = "abcdefghijklmnopqrstuvwxyz"
 
 
 app = Flask(__name__)
-model: RandomForestClassifier = joblib.load("modeling/models/randomforest.pkl")
+model: LogisticRegression = joblib.load("modeling/models/logreg.pkl")
 
 
 def encode_query(query: str):
