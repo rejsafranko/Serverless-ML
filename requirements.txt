@@ -9,3 +9,5 @@ xgboost
 mlflow
 nltk
 Flask
+dotenv
+boto3

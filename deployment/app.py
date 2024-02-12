@@ -1,8 +1,17 @@
-import numpy as np
+import os
 import joblib
+import tempfile
+import boto3
+import logging
+import numpy as np
 from flask import Flask, request, jsonify
 from sklearn.linear_model import LogisticRegression
+from dotenv import load_dotenv
 
+load_dotenv()
+ALPHABET = "abcdefghijklmnopqrstuvwxyz"
+ACCESS_KEY = os.getenv("AWS_ACCESS_KEY")
+SECRET_KEY = os.getenv("AWS_SECRET_KEY")
 LABEL_MAPPING = {
     0: "Clinical pharmacology",
     1: "Dental care",
@@ -26,11 +35,29 @@ LABEL_MAPPING = {
     19: "Women's health",
 }
 
-ALPHABET = "abcdefghijklmnopqrstuvwxyz"
+
+def get_s3_client():
+    s3 = boto3.client(
+        "s3",
+        aws_access_key_id=ACCESS_KEY,
+        aws_secret_access_key=SECRET_KEY,
+    )
+    return s3
+
+
+def load_model_from_s3(bucket, key):
+    s3_client = get_s3_client()
+    try:
+        with tempfile.TemporaryFile() as fp:
+            s3_client.download_fileobj(Fileobj=fp, Bucket=bucket, Key=key)
+            fp.seek(0)
+            return joblib.load(fp)
+    except Exception as e:
+        raise logging.exception(e)
 
 
 app = Flask(__name__)
-model: LogisticRegression = joblib.load("modeling/models/logreg.pkl")
+model: LogisticRegression = load_model_from_s3("ml-autocomplete-models", "logreg.pkl")
 
 
 def encode_query(query: str):
