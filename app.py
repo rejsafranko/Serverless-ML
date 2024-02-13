@@ -1,17 +1,15 @@
 import os
-import joblib
+import pickle
 import tempfile
 import boto3
-import logging
 import numpy as np
-from flask import Flask, request, jsonify
 from sklearn.linear_model import LogisticRegression
-from dotenv import load_dotenv
+from flask import Flask, request, jsonify
 
-load_dotenv()
+
 ALPHABET = "abcdefghijklmnopqrstuvwxyz"
-ACCESS_KEY = os.getenv("AWS_ACCESS_KEY")
-SECRET_KEY = os.getenv("AWS_SECRET_KEY")
+AWS_ACCESS_KEY = os.getenv("ACCESS_KEY")
+AWS_SECRET_KEY = os.getenv("SECRET_KEY")
 LABEL_MAPPING = {
     0: "Clinical pharmacology",
     1: "Dental care",
@@ -39,8 +37,8 @@ LABEL_MAPPING = {
 def get_s3_client():
     s3 = boto3.client(
         "s3",
-        aws_access_key_id=ACCESS_KEY,
-        aws_secret_access_key=SECRET_KEY,
+        aws_access_key_id=AWS_ACCESS_KEY,
+        aws_secret_access_key=AWS_SECRET_KEY,
     )
     return s3
 
@@ -51,13 +49,16 @@ def load_model_from_s3(bucket, key):
         with tempfile.TemporaryFile() as fp:
             s3_client.download_fileobj(Fileobj=fp, Bucket=bucket, Key=key)
             fp.seek(0)
-            return joblib.load(fp)
+            return pickle.load(fp)
+    except FileNotFoundError:
+        print("The file does not exist in the specified S3 bucket.")
+    except pickle.UnpicklingError:
+        print("Failed to unpickle the object. The file might be corrupted.")
     except Exception as e:
-        raise logging.exception(e)
+        print("An unexpected error occurred:", e)
 
 
 app = Flask(__name__)
-model: LogisticRegression = load_model_from_s3("ml-autocomplete-models", "logreg.pkl")
 
 
 def encode_query(query: str):
@@ -66,12 +67,7 @@ def encode_query(query: str):
     return encoded_query
 
 
-@app.route("/")
-def index():
-    return jsonify({"message": "OK"}), 200
-
-
-@app.route("/predict", methods=["POST"])
+@app.route("/autocomplete/predict", methods=["POST"])
 def predict():
     query = request.form.get("query")
 
@@ -84,6 +80,9 @@ def predict():
         return jsonify({"error": "Invalid input format."}), 400
 
     try:
+        model: LogisticRegression = load_model_from_s3(
+            "ml-autocomplete-models", "logreg.pkl"
+        )
         probs = model.predict_proba(query)[0]
     except Exception as e:
         return jsonify({"error": str(e)}), 500
@@ -96,7 +95,3 @@ def predict():
     }
 
     return jsonify({"prediction": predictions})
-
-
-if __name__ == "__main__":
-    app.run(debug=True, port=3000)

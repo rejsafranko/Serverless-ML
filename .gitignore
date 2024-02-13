@@ -3,3 +3,7 @@ modeling/models/*
 
 modeling/data/processed/*
 !modeling/data/processed/.gitkeep
+
+ml-autocomplete-api
+
+.env
