@@ -9,8 +9,8 @@ from sklearn.linear_model import LogisticRegression
 from dotenv import load_dotenv
 
 load_dotenv()
-ACCESS_KEY = os.getenv("AWS_ACCESS_KEY")
-SECRET_KEY = os.getenv("AWS_SECRET_KEY")
+ACCESS_KEY = os.getenv("ACCESS_KEY")
+SECRET_KEY = os.getenv("SECRET_KEY")
 
 
 def get_s3_client():
@@ -60,7 +60,7 @@ def main():
     best_model = grid_search.best_estimator_
 
     # Save the model.
-    save_model_to_s3(best_model, "ml-autocomplete-models", "logreg.pkl")
+    save_model_to_s3(best_model, "ml-autocomplete-models", "logreg.joblib")
 
 
 if __name__ == "__main__":

@@ -4,6 +4,11 @@ modeling/models/*
 modeling/data/processed/*
 !modeling/data/processed/.gitkeep
 
-ml-autocomplete-api
+ml-autocomplete-api/node_modules
+ml-autocomplete-api/cdk.out
+ml-autocomplete/*.js
+ml-autocomplete/.cdk.staging
+ml-autocomplete/*.d.ts
+!ml-autocomplete/jest.config.js
 
 .env
