@@ -1,5 +1,5 @@
 # CodX-Autocomplete
-<img src="https://github.com/rejsafranko/CodX-Autocomplete/blob/main/logo.jpg" alt="CodX Solutions" width="50" height="50">
+<img src="https://github.com/rejsafranko/CodX-Autocomplete/blob/main/logo.jpg" alt="CodX Solutions" width="80" height="80">
 
 
 ## Setup
