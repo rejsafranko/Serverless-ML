@@ -8,8 +8,8 @@ Local Machine: ```pip install -r requirements.txt```
 
 AWS CDK: ```npm install -g aws-cdk```
 
-## Deploy
-Lambda Function for prediction:
+## Deployment
+Deploy Dockerized :whale: Lambda Functions for prediction and training:
 
 ```cdk bootstrap --region [REGION]```
 
