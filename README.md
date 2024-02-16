@@ -1,4 +1,4 @@
-# CodX-Autocomplete
+# CodX Serverless ML-powered Autocomplete Tool
 <img src="https://github.com/rejsafranko/CodX-Autocomplete/blob/main/logo.jpg" alt="CodX Solutions" width="100" height="100">
 
 
