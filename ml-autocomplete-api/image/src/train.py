@@ -37,6 +37,9 @@ def handler(event, context):
         except Exception as e:
             print("An unexpected error occurred:", e)
 
+    def preprocess_data(df):
+        pass
+
     def load_data():
         connection = mysql.connector.connect(
             host=HOST, user=USER, password=PASSWORD, database=DATABASE
@@ -50,9 +53,7 @@ def handler(event, context):
 
         train_dataset = pd.DataFrame(rows, columns=["query", "completion"])
 
-        X = train_dataset.drop(["completion"], axis=1)
-        y = train_dataset["completion"]
-
+        X, y = preprocess_data(train_dataset)
         return (X, y)
 
     X, y = load_data()
