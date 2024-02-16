@@ -1,4 +1,3 @@
-numpy
 pandas
 matplotlib
 scikit-learn
@@ -8,6 +7,5 @@ datasets
 xgboost
 mlflow
 nltk
-Flask
 boto3
 python-dotenv
