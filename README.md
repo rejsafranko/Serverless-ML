@@ -1,5 +1,6 @@
 # CodX-Autocomplete
-![CodX Solutions](https://github.com/rejsafranko/CodX-Autocomplete/blob/main/logo.jpg)
+<img src="https://github.com/rejsafranko/CodX-Autocomplete/blob/main/logo.jpg" alt="CodX Solutions" width="50" height="50">
+
 
 ## Setup
 AWS EC2 Instance: ```pip install -r requirements.txt --no-cache-dir```
