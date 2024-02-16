@@ -9,49 +9,52 @@ from sklearn.linear_model import LogisticRegression
 
 ACCESS_KEY = os.getenv("ACCESS_KEY")
 SECRET_KEY = os.getenv("SECRET_KEY")
+HOST = os.getenv("DB_HOST")
+DATABASE = os.getenv("DB_NAME")
+USER = os.getenv("MASTER_USERNAME")
+PASSWORD = os.getenv("MASTER_PASSWORD")
 
 
-def get_s3_client():
-    s3 = boto3.client(
-        "s3",
-        aws_access_key_id=ACCESS_KEY,
-        aws_secret_access_key=SECRET_KEY,
-    )
-    return s3
+def handler(event, context):
+    def get_s3_client():
+        s3 = boto3.client(
+            "s3",
+            aws_access_key_id=ACCESS_KEY,
+            aws_secret_access_key=SECRET_KEY,
+        )
+        return s3
 
+    def save_model_to_s3(model, bucket, key):
+        s3_client = get_s3_client()
+        try:
+            with tempfile.TemporaryFile() as fp:
+                joblib.dump(model, fp)
+                fp.seek(0)
+                s3_client.put_object(Body=fp.read(), Bucket=bucket, Key=key)
+            print(f"{key} saved to s3 bucket {bucket}")
+        except PermissionError:
+            print("You don't have permission to access the S3 bucket.")
+        except Exception as e:
+            print("An unexpected error occurred:", e)
 
-def save_model_to_s3(model, bucket, key):
-    s3_client = get_s3_client()
-    try:
-        with tempfile.TemporaryFile() as fp:
-            joblib.dump(model, fp)
-            fp.seek(0)
-            s3_client.put_object(Body=fp.read(), Bucket=bucket, Key=key)
-        print(f"{key} saved to s3 bucket {bucket}")
-    except PermissionError:
-        print("You don't have permission to access the S3 bucket.")
-    except Exception as e:
-        print("An unexpected error occurred:", e)
+    def load_data():
+        connection = mysql.connector.connect(
+            host=HOST, user=USER, password=PASSWORD, database=DATABASE
+        )
+        cursor = connection.cursor()
+        db_query = "SELECT * FROM verified_searches"
+        cursor.execute(db_query)
+        rows = cursor.fetchall()
+        cursor.close()
+        connection.close()
 
+        train_dataset = pd.DataFrame(rows, columns=["query", "completion"])
 
-def load_data():
-    connection = mysql.connector.connect(host="", user="", password="", database="")
-    cursor = connection.cursor()
-    db_query = "SELECT * FROM searches"
-    cursor.execute(db_query)
-    rows = cursor.fetchall()
-    cursor.close()
-    connection.close()
+        X = train_dataset.drop(["completion"], axis=1)
+        y = train_dataset["completion"]
 
-    train_dataset = pd.DataFrame(rows, columns=["query", "completion"])
+        return (X, y)
 
-    X = train_dataset.drop(["completion"], axis=1)
-    y = train_dataset["completion"]
-
-    return (X, y)
-
-
-def main():
     X, y = load_data()
 
     # Define the parameter grid for grid search.
@@ -70,7 +73,3 @@ def main():
 
     # Save the model.
     save_model_to_s3(best_model, "ml-autocomplete-models", "logreg.joblib")
-
-
-if __name__ == "__main__":
-    main()
