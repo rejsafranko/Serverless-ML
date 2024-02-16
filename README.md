@@ -1,4 +1,4 @@
-# CodX Serverless ML-powered Search Autocompletion
+# CodX - Serverless MLOps Search Autocompletion System
 <img src="https://github.com/rejsafranko/CodX-Autocomplete/blob/main/logo.jpg" alt="CodX Solutions" width="100" height="100">
 
 
