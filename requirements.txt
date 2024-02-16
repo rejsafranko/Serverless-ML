@@ -9,3 +9,4 @@ mlflow
 nltk
 boto3
 python-dotenv
+mysql-connector-python
