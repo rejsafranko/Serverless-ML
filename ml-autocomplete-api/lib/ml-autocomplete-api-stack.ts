@@ -32,8 +32,8 @@ export class MlAutocompleteApiStack extends cdk.Stack {
       code: lambda.DockerImageCode.fromImageAsset("./image", {
         cmd: ["train.handler"],
       }),
-      memorySize: 1024,
-      timeout: cdk.Duration.seconds(30), // Pazi na ovo!!!!!!
+      memorySize: 1024, // Pazi na ovo!!!!!!
+      timeout: cdk.Duration.seconds(60), // Pazi na ovo!!!!!!
       architecture: lambda.Architecture.X86_64,
     });
 
