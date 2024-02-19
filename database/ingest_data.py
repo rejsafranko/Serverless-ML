@@ -53,12 +53,13 @@ def load_data_to_rds(csv_file, host, user, password, database):
 
 
 def main(args):
-    csv_file = args.dataset_path
-    host = HOST
-    database = DATABASE
-    user = USER
-    password = PASSWORD
-    load_data_to_rds(csv_file, host, user, password, database)
+    load_data_to_rds(
+        csv_file=args.dataset_path,
+        host=HOST,
+        user=USER,
+        password=PASSWORD,
+        database=DATABASE,
+    )
 
 
 if __name__ == "__main__":
