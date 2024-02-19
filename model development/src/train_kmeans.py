@@ -44,7 +44,7 @@ def main(args):
     print("F1-score:", f1)
 
     # Save the model.
-    joblib.dump(model, args.model_save_path + "kmeans.pkl")
+    joblib.dump(model, args.model_save_path + "kmeans.joblib")
 
 
 if __name__ == "__main__":

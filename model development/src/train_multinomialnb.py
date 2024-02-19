@@ -57,7 +57,7 @@ def main(args):
     print("F1-score:", f1)
 
     # Save the model.
-    joblib.dump(best_model, args.model_save_path + "multinomialnb.pkl")
+    joblib.dump(best_model, args.model_save_path + "multinomialnb.joblib")
 
 
 if __name__ == "__main__":
