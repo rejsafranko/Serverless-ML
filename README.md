@@ -1,5 +1,7 @@
 # Serverless MLOps Search Autocompletion System
 
+[STILL IN DEVELOPMENT] ❗❗❗
+
 ## Setup
 AWS EC2 Instance: ```pip install -r requirements.txt --no-cache-dir```
 
