@@ -1,4 +1,4 @@
-# Serverless MLOps Search Autocompletion System
+# Serverless MLOps Suggestion System on AWS
 
 [STILL IN DEVELOPMENT] ❗❗❗
 
