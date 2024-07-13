@@ -1,6 +1,8 @@
 # Serverless MLOps Suggestion System on AWS
 
-[STILL IN DEVELOPMENT] ❗❗❗
+## Overview
+
+This project consists of three main directories: database, ml-autocomplete-api, and model-development. The aim is to create and deploy a machine learning model that suggests service groups. The entire workflow includes training the model, deploying it to AWS Lambda, making predictions, and updating the database accordingly.
 
 ## Setup
 AWS EC2 Instance: ```pip install -r requirements.txt --no-cache-dir```
