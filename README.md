@@ -8,6 +8,8 @@ The model-development data science directory contains model training code and ev
 
 ## Architecture
 
+![Architecture](architecture.png)
+
 ### 1. AWS RDS Aurora Database
 
 The SQL queries for creating tables, reading and inserting data, increasing and decreasing new table row counter and most importantly the stored procedure for triggering model retraining, are stored in the database directory. Each time a prediction is made, it stored in the table as a new row and the new data counter is increased. A stored procedure is triggered each time new data arrives. It increases the counter or, if the treshold of 100 new rows is met, resets the counter and invokes the AWS Lambda train function.
