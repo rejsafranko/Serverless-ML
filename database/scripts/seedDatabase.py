@@ -4,7 +4,7 @@ import os
 import dotenv
 import pandas
 
-from .Database import Database
+from ..modules.Database import Database
 
 dotenv.load_dotenv()
 HOST = os.getenv("DB_HOST")  # RDS host
@@ -16,6 +16,7 @@ PASSWORD = os.getenv("MASTER_PASSWORD")
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser()
     parser.add_argument("--csv_path", type=str, required=True)
+    parser.add_argument("--queries_path", type=str, required=True)
     return parser.parse_args()
 
 
@@ -34,6 +35,7 @@ def main(args: argparse.Namespace) -> None:
         user=USER,
         password=PASSWORD,
         database=DATABASE_NAME,
+        queries_path=args.queries_path,
     )
 
     database.connect()
