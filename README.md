@@ -1,4 +1,4 @@
-# Serverless MLOps Suggestion System on AWS
+# Serverless MLOps System on AWS
 
 ![Architecture](architecture.png)
 
