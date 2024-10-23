@@ -5,6 +5,7 @@ import dotenv
 import pandas
 
 from ..modules.Database import Database
+from ..modules.Transformations import Transformations
 
 dotenv.load_dotenv()
 HOST = os.getenv("DB_HOST")  # RDS host
@@ -29,6 +30,8 @@ def main(args: argparse.Namespace) -> None:
     df = load_local_data(
         csv_file=args.csv_path,
     )
+
+    df = Transformations.apply_all(df)
 
     database = Database(
         host=HOST,
