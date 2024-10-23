@@ -19,5 +19,10 @@ class Transformations:
         df: pandas.DataFrame, binary_categories: List[str]
     ) -> pandas.DataFrame:
         for category in binary_categories:
-            df[category] = df[category].map({"YES": 1, "NO": 0}).astype(int)
+            df[category] = (
+                df[category]
+                .apply(lambda x: x.lower())
+                .map({"yes": 1, "no": 0})
+                .astype(int)
+            )
         return df

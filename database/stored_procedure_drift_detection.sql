@@ -18,7 +18,7 @@ BEGIN
         SET counter = 0;
 
         CALL mysql.lambda_async(
-            "arn:aws:lambda:eu-west-1:320329586666:function:MlAutocompleteApiStack-DockerTrain937700CB-kB5UQyk6vdCz",
+            "arn",
             "JSON_PAYLOAD"
         );
     END IF;
