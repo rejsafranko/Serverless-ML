@@ -12,3 +12,5 @@ ml-autocomplete/*.d.ts
 !ml-autocomplete/jest.config.js
 
 .env
+
+env
