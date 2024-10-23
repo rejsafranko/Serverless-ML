@@ -79,7 +79,7 @@ def handler(event, context):
         return {"statusCode": 400, "body": {"message": "Invalid input format."}}
 
     try:
-        model = load_model_from_s3("ml-autocomplete-models", "logreg.joblib")
+        model = load_model_from_s3("ml-demo-models", "logreg.joblib")
         probs = model.predict_proba(query)[0]
     except Exception as e:
         return {"statusCode": 500, "body": {"message": str(e)}}

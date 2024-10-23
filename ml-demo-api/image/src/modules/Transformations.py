@@ -10,7 +10,7 @@ class Transformations:
     def strip_text(text: str):
         return text.strip()
 
-    def encode_expert_diagnose(feature: pandas.Series) -> pandas.Series:
+    def encode_labels(feature: pandas.Series) -> pandas.Series:
         return feature.map(
             {"Normal": 0, "Bipolar Type-1": 1, "Bipolar Type-2": 2, "Depression": 3}
         ).astype(int)

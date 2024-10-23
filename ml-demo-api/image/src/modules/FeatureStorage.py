@@ -8,7 +8,7 @@ from typing import Dict, List
 
 
 class FeatureStorage:
-    def __init__(self, host, user, password, database_name):
+    def __init__(self, host: str, user: str, password: str, database_name: str):
         self._host = host
         self._user = user
         self._password = password

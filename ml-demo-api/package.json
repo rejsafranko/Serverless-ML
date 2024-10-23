@@ -1,8 +1,8 @@
 {
-  "name": "ml-autocomplete-api",
+  "name": "ml-demo-api",
   "version": "0.1.0",
   "bin": {
-    "ml-autocomplete-api": "bin/ml-autocomplete-api.js"
+    "ml-demo-api": "bin/ml-demo-api.js"
   },
   "scripts": {
     "build": "tsc",

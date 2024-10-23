@@ -4,12 +4,12 @@ model-development/models/*
 model-development/data/processed/*
 !model-development/data/processed/.gitkeep
 
-ml-autocomplete-api/node_modules
-ml-autocomplete-api/cdk.out
-ml-autocomplete/*.js
-ml-autocomplete/.cdk.staging
-ml-autocomplete/*.d.ts
-!ml-autocomplete/jest.config.js
+ml-demo-api/node_modules
+ml-demo-api/cdk.out
+ml-demo-api/*.js
+ml-demo-api/.cdk.staging
+ml-demo-api/*.d.ts
+!ml-demo-apo/jest.config.js
 
 .env
 
