@@ -4,7 +4,7 @@
 
 ## Overview
 
-This project consists of three main directories: database, ml-autocomplete-api (API), and model-development (data science). The aim is to create and deploy a machine learning model that suggests service groups. The entire workflow includes training the model through AWS Lambda, deploying it to AWS S3 bucket, making predictions through AWS Lambda, and updating the AWS RDS Aurora database accordingly.
+This project consists of three main directories: database, ml-autocomplete-api (API), and model-development (data science). The aim is to create and deploy a machine learning model that predicts mental health disorders. The entire workflow includes training the model through AWS Lambda, deploying it to AWS S3 bucket, making predictions through AWS Lambda, and updating the AWS RDS Aurora database accordingly.
 
 The model-development data science directory contains model training code and evaluation notebooks. I deployed a logistic regression model whose best performing metrics are displayed in the evaluation notebook.
 
