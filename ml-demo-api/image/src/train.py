@@ -1,51 +1,29 @@
-import os
+import sklearn.linear_model
+import sklearn.model_selection
 
-from sklearn.model_selection import GridSearchCV
-from sklearn.linear_model import LogisticRegression
-
-from typing import Tuple
-
-from .modules.ModelRepository import ModelRepository
-from .modules.FeatureStorage import FeatureStorage
-
-ACCESS_KEY = os.getenv("AWS_ACCESS_KEY")
-SECRET_KEY = os.getenv("AWS_SECRET_KEY")
-HOST = os.getenv("AWS_DATABASE_HOST")
-DATABASE_NAME = os.getenv("AWS_DATABASE_NAME")
-USER = os.getenv("AWS_DATABASE_USERNAME")
-PASSWORD = os.getenv("AWS_DATABASE_PASSWORD")
-
-
-def configure_infrastructure() -> Tuple[ModelRepository, FeatureStorage]:
-    model_repository = ModelRepository(access_key=ACCESS_KEY, secret_key=SECRET_KEY)
-
-    feature_storage = FeatureStorage(
-        host=HOST, user=USER, password=PASSWORD, database_name=DATABASE_NAME
-    )
-
-    return model_repository, feature_storage
+from .modules.Config import Config
 
 
 def handler(event, context):
+    config = Config()
+
     try:
-        model_repository, feature_storage = configure_infrastructure()
+        model_repository, feature_storage = config.configure_infrastructure()
     except Exception as e:
         print(
             f"Error occured while configuring the model repository or feature storage: {e}"
         )
 
     try:
-        # data loading, transformations
         dataset = feature_storage.fetch_all()
 
-        # hyperparams grid search
         param_grid = {
             "penalty": ["l1", "l2"],
             "C": [0.001, 0.01, 0.1, 1, 10, 100],
         }
-        model = LogisticRegression(solver="liblinear")
+        model = sklearn.linear_model.LogisticRegression(solver="liblinear")
 
-        grid_search = GridSearchCV(
+        grid_search = sklearn.model_selection.GridSearchCV(
             estimator=model, param_grid=param_grid, cv=5, scoring="accuracy"
         )
 
