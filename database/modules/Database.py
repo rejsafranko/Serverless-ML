@@ -75,27 +75,7 @@ class Database:
                 try:
                     cursor.execute(
                         populate_table_query,
-                        (
-                            row["Patient Number"],
-                            row["Sadness"],
-                            row["Euphoric"],
-                            row["Exhausted"],
-                            row["Sleep dissorder"],
-                            row["Mood Swing"],
-                            row["Suicidal thoughts"],
-                            row["Anorxia"],
-                            row["Authority Respect"],
-                            row["Try-Explanation"],
-                            row["Aggressive Response"],
-                            row["Ignore & Move-On"],
-                            row["Nervous Break-down"],
-                            row["Admit Mistakes"],
-                            row["Overthinking"],
-                            row["Sexual Activity"],
-                            row["Concentration"],
-                            row["Optimisim"],
-                            row["Expert Diagnose"],
-                        ),
+                        (row[column] for column in dataframe.columns),
                     )
                 except Exception as e:
                     print(f"Error while inserting row with id {idx}: {e}")
