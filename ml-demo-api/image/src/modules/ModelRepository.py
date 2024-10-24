@@ -4,6 +4,7 @@ import tempfile
 import boto3
 import sklearn.linear_model
 
+
 class ModelRepository:
     def __init__(self, access_key, secret_key):
         self._s3_client = boto3.client(
