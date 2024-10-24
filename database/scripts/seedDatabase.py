@@ -4,21 +4,33 @@ import os
 import dotenv
 import pandas
 
+from typing import Dict
+
 from ..modules.Database import Database
 from ..modules.Transformations import Transformations
-
-dotenv.load_dotenv()
-HOST = os.getenv("DB_HOST")  # RDS host
-DATABASE_NAME = os.getenv("DB_NAME")
-USER = os.getenv("MASTER_USERNAME")
-PASSWORD = os.getenv("MASTER_PASSWORD")
 
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser()
     parser.add_argument("--csv_path", type=str, required=True)
     parser.add_argument("--queries_path", type=str, required=True)
+    parser.add_argument("--table_name", type=str, required=True)
     return parser.parse_args()
+
+
+def configure_environment_variables() -> Dict[str, str]:
+    dotenv.load_dotenv()
+    host = os.getenv("DB_HOST")  # RDS host
+    database_name = os.getenv("DB_NAME")
+    user = os.getenv("MASTER_USERNAME")
+    password = os.getenv("MASTER_PASSWORD")
+
+    return {
+        "host": host,
+        "database_name": database_name,
+        "user": user,
+        "password": password,
+    }
 
 
 def load_local_data(csv_path: str) -> pandas.DataFrame:
@@ -27,24 +39,26 @@ def load_local_data(csv_path: str) -> pandas.DataFrame:
 
 
 def main(args: argparse.Namespace) -> None:
-    df = load_local_data(
+    environment_variables = configure_environment_variables()
+
+    dataframe = load_local_data(
         csv_file=args.csv_path,
     )
 
-    df = Transformations.apply_all(df)
+    dataframe = Transformations.apply_all(dataframe)
 
     database = Database(
-        host=HOST,
-        user=USER,
-        password=PASSWORD,
-        database=DATABASE_NAME,
+        host=environment_variables["host"],
+        user=environment_variables["user"],
+        password=environment_variables["password"],
+        database=environment_variables["database_name"],
         queries_path=args.queries_path,
     )
 
     database.connect()
 
-    database.create_table(table_name="mental_health_assesment")
-    database.insert_data(df, table_name="mental_health_assesment")
+    database.create_table(table_name=args.table_name)
+    database.insert_data(dataframe, table_name=args.table_name)
 
     database.close()
 
