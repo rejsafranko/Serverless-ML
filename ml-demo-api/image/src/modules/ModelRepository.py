@@ -1,7 +1,8 @@
 import joblib
 import tempfile
-import boto3
 
+import boto3
+import sklearn.base
 
 class ModelRepository:
     def __init__(self, access_key, secret_key):
@@ -25,5 +26,5 @@ class ModelRepository:
         except Exception as e:
             print("An unexpected error occurred:", e)
 
-    def fetch_model(self):
+    def load_model(self) -> sklearn.base.BaseEstimator:
         pass

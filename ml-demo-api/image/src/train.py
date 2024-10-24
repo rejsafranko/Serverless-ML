@@ -8,12 +8,12 @@ from typing import Tuple
 from .modules.ModelRepository import ModelRepository
 from .modules.FeatureStorage import FeatureStorage
 
-ACCESS_KEY = os.getenv("ACCESS_KEY")
-SECRET_KEY = os.getenv("SECRET_KEY")
-HOST = os.getenv("DB_HOST")
-DATABASE_NAME = os.getenv("DB_NAME")
-USER = os.getenv("MASTER_USERNAME")
-PASSWORD = os.getenv("MASTER_PASSWORD")
+ACCESS_KEY = os.getenv("AWS_ACCESS_KEY")
+SECRET_KEY = os.getenv("AWS_SECRET_KEY")
+HOST = os.getenv("AWS_DATABASE_HOST")
+DATABASE_NAME = os.getenv("AWS_DATABASE_NAME")
+USER = os.getenv("AWS_DATABASE_USERNAME")
+PASSWORD = os.getenv("AWS_DATABASE_PASSWORD")
 
 
 def configure_infrastructure() -> Tuple[ModelRepository, FeatureStorage]:
@@ -52,9 +52,7 @@ def handler(event, context):
         grid_search.fit(dataset["train"]["features"], dataset["train"]["labels"])
         best_model = grid_search.best_estimator_
 
-        model_repository.save_model(
-            best_model, "ml-demo-models", "logreg.joblib"
-        )
+        model_repository.save_model(best_model, "ml-demo-models", "logreg.joblib")
 
         return {"statusCode": 200, "body": {"message": "Model training completed."}}
 

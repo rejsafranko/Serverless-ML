@@ -22,7 +22,7 @@ class FeatureStorage:
     def seed(self, df: pandas.DataFrame) -> None:
         pass
 
-    def add_data_point(self) -> None:
+    def store_new_labeled_feature(self, features, label) -> None:
         pass
 
     def fetch_all(self) -> Dict[str, Dict[str, pandas.DataFrame | pandas.Series]]:
