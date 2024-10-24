@@ -6,15 +6,15 @@ BEGIN
     DECLARE current_row_count INT;
 
     SELECT counter INTO current_row_count
-    FROM searches.row_counter;
+    FROM table_name.row_counter;
 
     SET current_row_count = current_row_count + 1;
 
-    UPDATE mental_health_assesment.row_counter
+    UPDATE table_name.row_counter
     SET counter = current_row_count;
 
     IF current_row_count = 100 THEN
-        UPDATE searches.row_counter
+        UPDATE table_name.row_counter
         SET counter = 0;
 
         CALL mysql.lambda_async(

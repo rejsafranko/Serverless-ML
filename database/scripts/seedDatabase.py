@@ -24,12 +24,14 @@ def configure_environment_variables() -> Dict[str, str]:
     database_name = os.getenv("DB_NAME")
     user = os.getenv("MASTER_USERNAME")
     password = os.getenv("MASTER_PASSWORD")
+    drift_lambda_arn = os.getenv("DRIFT_LAMBDA_ARN")
 
     return {
         "host": host,
         "database_name": database_name,
         "user": user,
         "password": password,
+        "arn": drift_lambda_arn,
     }
 
 
@@ -59,6 +61,9 @@ def main(args: argparse.Namespace) -> None:
 
     database.create_table(table_name=args.table_name)
     database.insert_data(dataframe, table_name=args.table_name)
+    database.create_stored_procedure(
+        table_name=args.table_name, lambda_arn=environment_variables["arn"]
+    )
 
     database.close()
 

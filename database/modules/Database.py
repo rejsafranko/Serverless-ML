@@ -65,11 +65,11 @@ class Database:
         if self._connection is None:
             print("Database conneciton is NOT established.")
         else:
-            cursor = self._connection.cursor()
             populate_table_query = self._load_queries(
                 os.path.join(self._query_files_path, "populate_table.sql")
             )
             populate_table_query.replace("table_name", table_name)
+            cursor = self._connection.cursor()
 
             for idx, row in dataframe.iterrows():
                 try:
@@ -100,4 +100,23 @@ class Database:
                 except Exception as e:
                     print(f"Error while inserting row with id {idx}: {e}")
             self._connection.commit()
+            cursor.close()
+
+    def create_stored_procedure(self, table_name: str, lambda_arn: str):
+        if self._connection is None:
+            print("Database conneciton is NOT established.")
+        else:
+            create_stored_procedure_query = self._load_queries(
+                os.path.join(
+                    self._query_files_path, "stored_procedure_drift_detection.sql"
+                )
+            )
+            create_stored_procedure_query.replace("table_name", table_name)
+            create_stored_procedure_query.replace('"arn"', lambda_arn)
+            cursor = self._connection.cursor()
+            try:
+                cursor.execute(create_stored_procedure_query)
+                self._connection.commit()
+            except Exception as e:
+                print(f"Error while executing the create table query: {e}")
             cursor.close()
