@@ -1,6 +1,7 @@
 import json
 
 import sklearn.linear_model
+import wandb
 
 from typing import Dict
 
@@ -14,8 +15,12 @@ def handler(event, context):
         model_repository, feature_storage = config.configure_infrastructure()
     except Exception as e:
         print(
-            f"Error occured while configuring the model repository or feature storage: {e}"
+            f"Error occurred while configuring the model repository or feature storage: {e}"
         )
+        return {
+            "statusCode": 500,
+            "body": {"message": "Infrastructure configuration failed."},
+        }
 
     if event["requestContext"]["http"]["method"] == "POST":
         try:
@@ -28,8 +33,15 @@ def handler(event, context):
             return {"statusCode": 400, "body": {"message": "No input provided."}}
 
         try:
+            model_name = (
+                wandb.Api()
+                .runs(path="codx-solutions/ml-demo", order="-accuracy")[0]
+                .summary.get("model_name")
+            )
             model: sklearn.linear_model.LogisticRegression = (
-                model_repository.load_model("ml-demo-models", "logreg.joblib")
+                model_repository.load_model(
+                    bucekt_name="ml-demo-models", model_name=model_name
+                )
             )
             probability_scores = model.predict(input_features)
         except Exception as e:

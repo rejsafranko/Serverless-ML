@@ -27,5 +27,7 @@ class ModelRepository:
         except Exception as e:
             print("An unexpected error occurred:", e)
 
-    def load_model(self) -> sklearn.linear_model.LogisticRegression:
+    def load_model(
+        self, bucket_name: str, model_name: str
+    ) -> sklearn.linear_model.LogisticRegression:
         return sklearn.linear_model.LogisticRegression()

@@ -36,7 +36,7 @@ class Config:
 
     def configure_infrastructure(self) -> Tuple[ModelRepository, FeatureStorage]:
         wandb.login(key=self._environment_variables["wandb_api_key"])
-        wandb.init(project="ml-demo")
+        wandb.init(project="ml-demo", entity="codx-solutions")
 
         model_repository = ModelRepository(
             access_key=self._environment_variables["access_key"],
