@@ -13,3 +13,4 @@ mysql-connector-python===8.3.0
 googletrans==4.0.0-rc1
 tqdm==4.66.5
 imblearn==0.0
+wandb==0.18.5
