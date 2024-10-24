@@ -6,6 +6,8 @@ import sklearn.model_selection
 
 from typing import Dict, List
 
+from .Transformations import Transformations
+
 
 class FeatureStorage:
     def __init__(self, host: str, user: str, password: str, database_name: str):
@@ -14,27 +16,54 @@ class FeatureStorage:
         self._password = password
         self._database_name = database_name
 
+    def _connect(self):
+        try:
+            connection = mysql.connector.connect(
+                host=self._host,
+                user=self._user,
+                password=self._password,
+                database=self._database_name,
+            )
+            return connection
+        except Exception as e:
+            print(f"Error while connecting to feature storage: {e}")
+
     def _load_columns(self, json_path: str) -> Dict[str, List | str]:
         with open(json_path, "r") as f:
             columns = json.load(f)
         return columns
 
-    def seed(self, df: pandas.DataFrame) -> None:
-        pass
-
-    def store_new_labeled_feature(self, features, label) -> None:
-        pass
-
-    def fetch_all(self) -> Dict[str, Dict[str, pandas.DataFrame | pandas.Series]]:
-        connection = mysql.connector.connect(
-            host=self._host,
-            user=self._user,
-            password=self._password,
-            database=self._database_name,
-        )
+    def store_new_labeled_feature(
+        self, table_name: str, features: Dict, label: int
+    ) -> None:
+        labeled_features = pandas.DataFrame()
+        labeled_features = Transformations.apply_all(dataframe=labeled_features)
+        connection = self._connect()
         cursor = connection.cursor()
-        db_query = "SELECT * FROM features"
-        cursor.execute(db_query)
+        insert_new_labeled_feature_query = f"""
+            INSERT INTO {table_name} (
+                Patient_Number, Sadness, Euphoric, Exhausted, Sleep_dissorder,
+                Mood_Swing, Suicidal_thoughts, Anorxia, Authority_Respect,
+                Try_Explanation, Aggressive_Response, Ignore_Move_On,
+                Nervous_Break_down, Admit_Mistakes, Overthinking,
+                Sexual_Activity, Concentration, Optimisim, Expert_Diagnose
+                ) 
+                VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s);
+            """
+        cursor.execute(
+            insert_new_labeled_feature_query,
+            (labeled_features[column] for column in labeled_features.columns()),
+        )
+        cursor.close()
+        connection.commit()
+        connection.close()
+
+    def fetch_all(
+        self, table_name: str
+    ) -> Dict[str, Dict[str, pandas.DataFrame | pandas.Series]]:
+        connection = self._connect()
+        cursor = connection.cursor()
+        cursor.execute(f"SELECT * FROM {table_name}")
         rows = cursor.fetchall()
         cursor.close()
         connection.close()
