@@ -1,11 +1,11 @@
 import json
 
-import sklearn.linear_model
 import wandb
 
 from typing import Dict
 
 from .modules.Config import Config
+from .modules.ModelService import ModelService
 
 
 def handler(event, context):
@@ -33,21 +33,22 @@ def handler(event, context):
             return {"statusCode": 400, "body": {"message": "No input provided."}}
 
         try:
+            model_service = ModelService()
             model_name = (
                 wandb.Api()
                 .runs(path="codx-solutions/ml-demo", order="-accuracy")[0]
                 .summary.get("model_name")
             )
-            model: sklearn.linear_model.LogisticRegression = (
+            model_service.set_model(
                 model_repository.load_model(
                     bucekt_name="ml-demo-models", model_name=model_name
                 )
             )
-            probability_scores = model.predict(input_features)
+
+            prediction = model_service.inference(input_features)
         except Exception as e:
             return {"statusCode": 500, "body": {"message": str(e)}}
 
-        prediction = None
         feature_storage.store_new_labeled_feature(
             features=input_features, label=prediction
         )

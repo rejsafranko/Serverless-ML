@@ -1,6 +1,7 @@
 import os
 
 import dotenv
+import sklearn.linear_model
 import wandb
 
 from typing import Dict, Tuple
@@ -34,7 +35,9 @@ class Config:
             "wandb_api_key": wandb_api_key,
         }
 
-    def configure_infrastructure(self) -> Tuple[ModelRepository, FeatureStorage]:
+    def configure_infrastructure(
+        self,
+    ) -> Tuple[ModelRepository, FeatureStorage]:
         wandb.login(key=self._environment_variables["wandb_api_key"])
         wandb.init(project="ml-demo", entity="codx-solutions")
 
