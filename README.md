@@ -1,6 +1,10 @@
 # Serverless MLOps System on AWS
 
-![Architecture](architecture.png)
+[Still in development] TODOs:
+
+❗ transformations and storage of new user input
+
+❗ drift detection algorithm  
 
 ## Overview
 
