@@ -2,8 +2,6 @@
 
 [Still in development] TODOs:
 
-❗ transformations and storage of new user input
-
 ❗ drift detection algorithm  
 
 ## Overview
