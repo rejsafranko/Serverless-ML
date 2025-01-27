@@ -18,6 +18,9 @@ class Config:
         )
 
     def _configure_environment_variables(self) -> None:
+        """
+        Loads and configures environment variables.
+        """
         access_key = os.getenv("AWS_ACCESS_KEY")
         secret_key = os.getenv("AWS_SECRET_KEY")
         host = os.getenv("AWS_DATABASE_HOST")  # RDS host
@@ -25,6 +28,12 @@ class Config:
         user = os.getenv("AWS_DATABASE_USERNAME")
         password = os.getenv("AWS_DATABASE_PASSWORD")
         wandb_api_key = os.getenv("WANDB_API_KEY")
+
+        if not all(
+            [access_key, secret_key, host, database_name, user, password, wandb_api_key]
+        ):
+            raise ValueError("Missing environment variables!")
+
         self._environment_variables = {
             "access_key": access_key,
             "secret_key": secret_key,
@@ -38,6 +47,10 @@ class Config:
     def configure_infrastructure(
         self,
     ) -> Tuple[ModelRepository, FeatureStorage]:
+        """
+        Configures the infrastructure: ModelRepository and FeatureStorage.
+        Initializes WandB, S3 and Database connections.
+        """
         wandb.login(key=self._environment_variables["wandb_api_key"])
         wandb.init(project="ml-demo", entity="codx-solutions")
 

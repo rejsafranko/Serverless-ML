@@ -2,18 +2,27 @@ import pandas
 
 
 class Transformations:
-    def __init__(self) -> None:
-        pass
-
+    @staticmethod
     def strip_text(text: str) -> str:
+        """
+        Strips leading and trailing spaces from a string.
+        """
         return text.strip()
 
+    @staticmethod
     def encode_labels(feature: pandas.Series) -> pandas.Series:
+        """
+        Encodes categorical labels into integers.
+        """
         return feature.map(
             {"Normal": 0, "Bipolar Type-1": 1, "Bipolar Type-2": 2, "Depression": 3}
         ).astype(int)
 
-    def encode_binary_categories(self, dataframe: pandas.DataFrame) -> pandas.DataFrame:
+    @staticmethod
+    def encode_binary_categories(dataframe: pandas.DataFrame) -> pandas.DataFrame:
+        """
+        Encodes binary categorical features ("yes"/"no") as 1/0.
+        """
         for category in dataframe.columns:
             unique_values = dataframe[category].dropna().unique()
             if len(unique_values) == 2:
@@ -25,10 +34,14 @@ class Transformations:
                 )
         return dataframe
 
-    def apply_all(self, dataframe: pandas.DataFrame) -> pandas.DataFrame:
-        dataframe = dataframe.apply(self.strip_text)
-        dataframe = self.encode_binary_categories(dataframe)
+    @staticmethod
+    def apply_all(dataframe: pandas.DataFrame) -> pandas.DataFrame:
+        """
+        Applies all transformations to the DataFrame.
+        """
+        dataframe = dataframe.apply(Transformations.strip_text)
+        dataframe = Transformations.encode_binary_categories(dataframe)
         dataframe["Expert Diagnose"] = dataframe["Expert Diagnose"].apply(
-            self.encode_labels
+            Transformations.encode_labels
         )
         return dataframe
