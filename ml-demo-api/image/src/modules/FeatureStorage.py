@@ -106,3 +106,36 @@ class FeatureStorage:
             "train": {"features": X_train, "labels": y_train},
             "test": {"features": X_test, "labels": y_test},
         }
+
+    def get_previous_ks_results(self, table_name: str) -> Dict[str, float]:
+        """
+        Retrieves previously calculated KS test results from the database.
+        """
+        connection = self._connect()
+        cursor = connection.cursor()
+        query = f"SELECT column_name, ks_test_value FROM ks_test_results WHERE table_name = '{table_name}'"
+        cursor.execute(query)
+        rows = cursor.fetchall()
+        cursor.close()
+        connection.close()
+
+        return {row[0]: row[1] for row in rows}
+
+    def update_ks_results(self, table_name: str, ks_results: Dict[str, float]) -> None:
+        """
+        Updates the KS test results for each column in the database.
+        """
+        connection = self._connect()
+        cursor = connection.cursor()
+
+        for column, ks_value in ks_results.items():
+            update_query = f"""
+                INSERT INTO ks_test_results (table_name, column_name, ks_test_value)
+                VALUES ('{table_name}', '{column}', {ks_value})
+                ON DUPLICATE KEY UPDATE ks_test_value = {ks_value}
+            """
+            cursor.execute(update_query)
+
+        connection.commit()
+        cursor.close()
+        connection.close()
