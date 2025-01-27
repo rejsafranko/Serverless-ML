@@ -1,5 +1,5 @@
-CREATE TABLE table_name (
-    Patient_Number VARCHAR(255) NOT NULL,
+CREATE TABLE IF NOT EXISTS table_name (
+    Patient_Number VARCHAR(255) NOT NULL PRIMARY KEY,
     Sadness VARCHAR(255) NOT NULL,
     Euphoric VARCHAR(255) NOT NULL,
     Exhausted VARCHAR(255) NOT NULL,
@@ -17,6 +17,5 @@ CREATE TABLE table_name (
     Sexual_Activity VARCHAR(255) NOT NULL,
     Concentration VARCHAR(255) NOT NULL,
     Optimisim VARCHAR(255) NOT NULL,
-    Expert_Diagnose VARCHAR(255) NOT NULL,
-    PRIMARY KEY (Patient_Number)
+    Expert_Diagnose VARCHAR(255) NOT NULL
 );
