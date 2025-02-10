@@ -9,6 +9,10 @@ The architecture supports:
 4) Detecting data distribution drift and triggering model re-training.
 5) Notification alerts about the training process.
 
+<div align="center">
+  <img src="serverless.png" alt="Serverless Architecture">
+</div>
+
 ## Architecture Components
 
 ### 1. AWS RDS MySQL Database
