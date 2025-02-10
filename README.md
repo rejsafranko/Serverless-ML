@@ -1,6 +1,6 @@
 # Serverless ML Deployment on AWS
 
-This project consists of two directories: database and ml-demo-api. The aim is to create and deploy an MLOps architecture that serves a model for mental health disorder prediction. The entire workflow consists of a 3 AWS Lambda functions and an AWS RDS MySQL database.
+This project consists of two directories: database and ml-demo-api. The aim is to create and deploy an MLOps architecture that serves a model for mental health disorder prediction. The entire workflow consists of 3 AWS Lambda functions and an AWS RDS MySQL database.
 
 The architecture supports:
 1) Training, logging and versioning the models.
