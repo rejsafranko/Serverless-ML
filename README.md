@@ -19,7 +19,7 @@ The database directory is a local environment for a developer to execute queries
 
 I have deployed 3 Dockerized Python Lambda functions. I chose a Docker container so I can easily build the environment and install the neccesary dependencies.
 
-1) Data distribution shift function - this function runs an algorithm which detects if the distribution of data points per categories has shifted. This means that the real-world distribution of data is actually different than the distribution my model approximated and model re-training with newly stored data is needed.
+1) Data distribution shift function - this function runs the Kolmogorov-Smirnov test which detects if the distribution of data points per categories has shifted. This means that the real-world distribution of data is actually different than the distribution my model approximated and model re-training with newly stored data is needed.
 2) Train function - loads the features from the feature table, trains the model and logs the training metrics on Weight&Biases platform.
 3) Predict function - This function takes user input from the body of an HTTP POST request, loads the champion model, returns a prediction to the user, transforms the input data and label and stores them as a new labeled feature to the feature table.
 
