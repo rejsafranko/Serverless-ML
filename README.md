@@ -4,6 +4,10 @@
 
 The system is designed to demonstrate a practical, production-ready MLOps pipeline using AWS Lambda, RDS MySQL, EventBridge, Docker, and CDK. It is ideal for showcasing how to build and serve models in a lightweight, scalable way using only cloud-native tools.
 
+
+[Architecture Diagram](serverless.png)
+
+
 ### 🔄 How It Works
 
 1. **Real-time Prediction**
